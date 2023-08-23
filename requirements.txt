@@ -1,9 +1,13 @@
-glob
+glob2
 numpy
 rasterio
-pickle
+pickle5
 opencv-python
 pathos
-mxnet < 2.0
+mxnet
 higra
-
+matplotlib
+netCDF4
+scipy
+pandas
+rioxarray
