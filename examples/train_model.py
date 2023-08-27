@@ -2,10 +2,10 @@
 # coding: utf-8
 
 import sys
-sys.path.insert(1,'/decode/')
-sys.path.insert(1,'/')
-sys.path.insert(1,'/FracTAL_ResUNet')
-print(sys.path)
+# sys.path.insert(1,'../../decode/')
+# sys.path.insert(1,'/')
+# sys.path.insert(1,'/FracTAL_ResUNet')
+# print(sys.path)
 
 import os
 import time
