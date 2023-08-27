@@ -4,7 +4,7 @@ rasterio
 pickle5
 opencv-python
 pathos
-mxnet
+# mxnet
 higra
 matplotlib
 netCDF4
