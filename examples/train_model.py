@@ -2,10 +2,10 @@
 # coding: utf-8
 
 import sys
-# sys.path.insert(1,'../../decode/')
-# sys.path.insert(1,'/')
-# sys.path.insert(1,'/FracTAL_ResUNet')
-# print(sys.path)
+sys.path.insert(1,'../../decode/')
+sys.path.insert(1,'/')
+sys.path.insert(1,'/FracTAL_ResUNet')
+print(sys.path)
 
 import os
 import time
@@ -25,11 +25,14 @@ from FracTAL_ResUNet.models.semanticsegmentation.FracTAL_ResUNet import *
 
 
 def main():
-    x = mx.nd.ones((3,4), ctx=gpu())
+    x = mx.nd.ones((3,4), ctx=gpu(0))
     print(x)
     print("Hello World!")
-
     exit()
+
+    base_path = '/home/chocobo/datasets/AI4Boundaries2/sentinel2'
+    input_path = f'{base_path}/images'
+    label_path = f'{base_path}/masks'
 
     mxnet_dataset_path = f'{base_path}/mxnet_dataset'
     input_ndarray = mx.nd.load(f'{mxnet_dataset_path}/LU_input_ndarray.mat')[0]
@@ -39,6 +42,7 @@ def main():
     dataset = mx.gluon.data.dataset.ArrayDataset(input_ndarray, label_ndarray)
     train_data = gluon.data.DataLoader(
         dataset, batch_size=batch_size, shuffle=True, num_workers=4)
+    
 
     # D6nf32 example 
     nfilters_init=32
