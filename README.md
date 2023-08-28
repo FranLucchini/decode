@@ -69,8 +69,8 @@ docker run --rm -it \
 
 ```sh
 docker run --rm -it \
-    --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 \
-    -v /home/felipe/Cenia-ODEPA/decode/examples:/decode/examples \
-    -v /media/felipe/My Passport/AI4boundaries/sentinel2/mxnet_dataset:
+    --gpus all --ipc=host \
+    -v /home/felipe/Cenia-ODEPA/decode:/decode \
+    -v "/media/felipe/My Passport/AI4boundaries/sentinel2/mxnet_dataset":/decode/examples/input \
     decode bash
 ```

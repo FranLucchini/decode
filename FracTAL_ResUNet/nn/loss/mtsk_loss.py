@@ -15,9 +15,9 @@ class mtsk_loss(object):
 
     def loss(self,_prediction,_label):
         # z = z.as_in_context(gpu(0))
-        pred_segm  = _prediction[0].as_in_context(cpu(0))
-        pred_bound = _prediction[1].as_in_context(cpu(0))
-        pred_dists = _prediction[2].as_in_context(cpu(0))
+        pred_segm  = _prediction[0]# .as_in_context(cpu(0))
+        pred_bound = _prediction[1]# .as_in_context(cpu(0))
+        pred_dists = _prediction[2]# .as_in_context(cpu(0))
         
         # In our implementation of the labels, we stack together the [segmentation, boundary, distance] labels, 
         # along the channel axis.
