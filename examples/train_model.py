@@ -49,20 +49,22 @@ def main(args):
     base_path = '/decode/examples'
     # input_path = f'{base_path}/images'
     # label_path = f'{base_path}/masks'
-    mxnet_dataset_path = f'{base_path}/input'
+    mxnet_dataset_path = f'{base_path}/input/mxnet_dataset'
 
     # starting the monitoring
     tracemalloc.start()
 
     print('Reading MXNet NDArray files')
-    input_ndarray = mx.nd.load(f'{mxnet_dataset_path}/LU_input_ndarray.mat')[0].as_in_context(gpu(0))
-    label_ndarray = mx.nd.load(f'{mxnet_dataset_path}/LU_label_ndarray.mat')[0].as_in_context(gpu(0))
+    input_ndarray = mx.nd.load(f'{mxnet_dataset_path}/LU_input_ndarray.mat')[0]# .as_in_context(gpu(0))
+    label_ndarray = mx.nd.load(f'{mxnet_dataset_path}/LU_label_ndarray.mat')[0]# .as_in_context(gpu(0))
     input_ndarray.shape, label_ndarray.shape
 
     print('Build dataset')
     dataset = mx.gluon.data.dataset.ArrayDataset(input_ndarray, label_ndarray)
 
     print('Build dataloader')
+    # NOTE comment multiprocess because we are not working with multiple GPUs so
+    #  it throws a context error
     train_data = gluon.data.DataLoader(
         dataset, batch_size=batch_size, shuffle=True) #, num_workers=4)
     
@@ -96,6 +98,8 @@ def main(args):
         printProgressBar(0, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
         for data, label in train_data:
             # forward + backward
+            data = data.as_in_context(gpu(0))
+            label = label.as_in_context(gpu(0))
             with autograd.record():
                 output = net(data)
                 # Transform label to correct shape

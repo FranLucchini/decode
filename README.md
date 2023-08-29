@@ -71,6 +71,6 @@ docker run --rm -it \
 docker run --rm -it \
     --gpus all --ipc=host \
     -v /home/felipe/Cenia-ODEPA/decode:/decode \
-    -v "/media/felipe/My Passport/AI4boundaries/sentinel2/mxnet_dataset":/decode/examples/input \
+    -v "/media/felipe/My Passport/AI4boundaries/sentinel2":/decode/examples/input \
     decode bash
 ```

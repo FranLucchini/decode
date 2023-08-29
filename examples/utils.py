@@ -1,7 +1,8 @@
 import os
 import rioxarray
-import mxnet as mx
+
 import xarray as xr
+import numpy as np
 
 # Print iterations progress
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
